@@ -1,0 +1,39 @@
+ext {
+    isRelease = true
+
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "29.0.0",
+            minSdkVersion    : 21,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+
+    retrofit_version = '2.4.0'
+    okhttp_version   = '3.4.1'
+    rx_kotlin_version = '2.3.0'
+    rx_android_version = '2.1.0'
+
+    appId = [
+            "app"     : "com.kkaka.wanandroid",
+    ]
+
+    supportLibrary = "28.0.0"
+    dependencies = [
+            "appcompat"      : "com.android.support:appcompat-v7:${supportLibrary}",
+            "recyclerview"   : "com.android.support:recyclerview-v7:${supportLibrary}",
+            "constraint"     : "com.android.support.constraint:constraint-layout:1.1.3",
+            "kotlin"         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+    ]
+
+    third_dependencies = [
+            "retrofit"       : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            "retrofit-converter-gson"         : "com.squareup.retrofit2:converter-gson:${retrofit_version}",
+            "retrofit-adapter-rxjava2"        : "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}",
+            "okhttp3"                         : "com.squareup.okhttp3:okhttp:${okhttp_version}",
+            "okhttp3-logging-interceptor"     : "com.squareup.okhttp3:logging-interceptor:${okhttp_version}",
+            "rxkotlin"       : "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version",
+            "rxandroid"      : "io.reactivex.rxjava2:rxandroid:$rx_android_version",
+    ]
+}
