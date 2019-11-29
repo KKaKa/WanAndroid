@@ -31,6 +31,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation support.appcompat
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    support_third.each { k, v -> implementation v }
+    support_third.each { k, v -> api v }
 }
 

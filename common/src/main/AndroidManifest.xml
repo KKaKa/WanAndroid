@@ -1,2 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.kkaka.common"/>
+          package="com.kkaka.common">
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+</manifest>

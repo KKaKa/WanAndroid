@@ -10,10 +10,13 @@ ext {
             versionName      : "1.0",
     ]
 
-    retrofit_version = '2.4.0'
-    okhttp_version   = '3.4.1'
-    rx_kotlin_version = '2.3.0'
-    rx_android_version = '2.1.0'
+    retrofit_version    = '2.4.0'
+    okhttp_version      = '3.4.1'
+    rx_kotlin_version   = '2.3.0'
+    rx_android_version  = '2.1.0'
+    anko_version        = '0.10.5'
+    bottom_bar_version  = '2.0.5'
+    circleimageview_version = '2.2.0'
 
     appId = [
             "app"     : "com.kkaka.wanandroid",
@@ -25,6 +28,7 @@ ext {
             "recyclerview"   : "com.android.support:recyclerview-v7:${supportLibrary}",
             "constraint"     : "com.android.support.constraint:constraint-layout:1.1.3",
             "kotlin"         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "design"         : "com.android.support:design:$supportLibrary",
     ]
 
     third_dependencies = [
@@ -35,5 +39,9 @@ ext {
             "okhttp3-logging-interceptor"     : "com.squareup.okhttp3:logging-interceptor:${okhttp_version}",
             "rxkotlin"       : "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version",
             "rxandroid"      : "io.reactivex.rxjava2:rxandroid:$rx_android_version",
+            "v4_anko"        : "org.jetbrains.anko:anko-support-v4-commons:$anko_version",
+            "anko"           : "org.jetbrains.anko:anko-commons:$anko_version",
+            "bottomnavigationbar"             : "com.ashokvarma.android:bottom-navigation-bar:$bottom_bar_version",
+            "circle_imageview"                : "de.hdodenhof:circleimageview:$circleimageview_version"
     ]
 }
