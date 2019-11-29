@@ -53,8 +53,16 @@
             android:layout_height="match_parent"
             android:layout_gravity = "start"
             app:headerLayout="@layout/layout_drawer_header"
-            app:menu="@menu/drawer_menu"
-    >
+            app:menu="@menu/drawer_menu">
+
+        <TextView
+                android:textStyle="italic"
+                android:layout_marginBottom="8dp"
+                android:text="感谢star https://github.com/KKaKa/WanAndroid"
+                android:textColor="@color/gray"
+                android:layout_gravity="center|bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
     </android.support.design.widget.NavigationView>
 
