@@ -5,7 +5,10 @@ package com.kkaka.common.common
  * @description
  */
 enum class StateType {
-
-
-
+    SUCCESS,
+    ERROR,
+    NETWORK_ERROR,
+    LOADING,
+    EMPTY,
+    TIP,
 }

@@ -18,6 +18,10 @@ class RetrofitFactory private constructor(){
 
     private val retrofit : Retrofit
 
+    fun <T> create(clz: Class<T>): T {
+        return retrofit.create(clz)
+    }
+
     init {
         retrofit = Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
@@ -35,10 +39,11 @@ class RetrofitFactory private constructor(){
 
     private fun initOkHttpClient() : OkHttpClient{
         return OkHttpClient.Builder()
+            .addNetworkInterceptor(LoggingInterceptor())
             .addInterceptor(initCookieIntercept())
             .addInterceptor(initLoginIntercept())
             .addInterceptor(initCommonInterceptor())
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+//            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
     }
 

@@ -11,12 +11,12 @@ import kotlin.reflect.KProperty
  */
 class Preference<T>(private val name: String, private val default: T) : ReadWriteProperty<Any?, T> {
 
-        companion object {
-            lateinit var preference: SharedPreferences
+    companion object {
+        lateinit var preference: SharedPreferences
 
-            fun setContext(context: Context) {
-                preference = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
-            }
+        fun setContext(context: Context) {
+            preference = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+        }
 
         fun clear() = preference.edit().clear().apply()
     }

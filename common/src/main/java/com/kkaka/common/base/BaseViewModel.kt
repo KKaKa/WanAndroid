@@ -10,7 +10,7 @@ import com.kkaka.common.utils.Util
  * @author Laizexin on 2019/11/28
  * @description
  */
-class BaseViewModel<T : BaseRepository>(application: Application) : AndroidViewModel(application){
+open class BaseViewModel<T : BaseRepository>(application: Application) : AndroidViewModel(application){
 
     val loadState by lazy { MutableLiveData<State>() }
 
