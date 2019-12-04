@@ -13,6 +13,7 @@ import com.kkaka.common.common.State
 import com.kkaka.common.common.StateType
 import com.kkaka.common.utils.Util
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 
 /**
  * @author Laizexin on 2019/12/2
@@ -56,6 +57,13 @@ abstract class LifecycleFragment<T : BaseViewModel<*>> : BaseFragment() {
         loadService.showCallback(ErrorCallback::class.java)
     }
 
+    open fun showTip(msg: String){
+        if(!TextUtils.isEmpty(msg)){
+            toast(msg)
+        }
+        loadService.showCallback(SuccessCallback::class.java)
+    }
+
     private val observer by lazy {
         Observer<State> {
             it?.let {
@@ -63,8 +71,9 @@ abstract class LifecycleFragment<T : BaseViewModel<*>> : BaseFragment() {
                     StateType.EMPTY -> showEmpty()
                     StateType.SUCCESS -> showSuccess()
                     StateType.LOADING -> showLoading()
-                    StateType.ERROR -> showError(it.msg)
+                    StateType.ERROR -> showTip(it.msg)
                     StateType.NETWORK_ERROR -> showError("网络异常")
+                    StateType.TIP -> showTip(it.msg)
                 }
             }
         }

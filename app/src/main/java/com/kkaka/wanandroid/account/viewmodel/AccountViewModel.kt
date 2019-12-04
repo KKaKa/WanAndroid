@@ -6,8 +6,10 @@ import com.kkaka.common.base.BaseViewModel
 import com.kkaka.common.common.State
 import com.kkaka.common.common.StateType
 import com.kkaka.common.https.BaseResponse
+import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.account.data.AccountRepository
 import com.kkaka.wanandroid.account.data.LoginRsp
+import com.kkaka.wanandroid.account.data.RegisterRsp
 
 
 /**
@@ -17,8 +19,17 @@ import com.kkaka.wanandroid.account.data.LoginRsp
 class AccountViewModel(application: Application) : BaseViewModel<AccountRepository>(application) {
 
     val mLoginData = MutableLiveData<BaseResponse<LoginRsp>>()
+    val mRegistData = MutableLiveData<BaseResponse<RegisterRsp>>()
 
     fun login(userName :String,password :String){
         mRespository.login(userName,password,mLoginData)
+    }
+
+    fun regist(userName :String,password: String,repassword: String){
+        if(password != repassword){
+            loadState.postValue(State(StateType.TIP,msg = getApplication<Application>().resources.getString(R.string.password_ensure_error)))
+        }else{
+            mRespository.regist(userName,password,repassword,mRegistData)
+        }
     }
 }

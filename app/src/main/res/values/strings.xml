@@ -13,8 +13,13 @@
     <string name="author">作者</string>
     <string name="account">账号</string>
     <string name="password">密码</string>
+    <string name="repassword">确认密码</string>
     <string name="login">登录</string>
-    <string name="go_regist">去注册</string>
+    <string name="regist">注册</string>
+    <string name="go_regist">没有账号 去注册</string>
+    <string name="go_login">已有账号 去登录</string>
+    <string name="password_ensure_error">前后密码不一致</string>
+    <string name="regist_success">注册成功</string>
 
 
 </resources>

@@ -69,7 +69,7 @@ abstract class LifecycleActivity <T : BaseViewModel<*>> : BaseActivity() {
                     StateType.EMPTY -> showEmpty()
                     StateType.SUCCESS -> showSuccess()
                     StateType.LOADING -> showLoading()
-                    StateType.ERROR -> showError(it.msg)
+                    StateType.ERROR -> showTip(it.msg)
                     StateType.NETWORK_ERROR -> showError("网络异常")
                     StateType.TIP -> showTip(it.msg)
                 }

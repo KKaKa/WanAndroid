@@ -2,6 +2,7 @@ package com.kkaka.wanandroid.api
 
 import com.kkaka.common.https.BaseResponse
 import com.kkaka.wanandroid.account.data.LoginRsp
+import com.kkaka.wanandroid.account.data.RegisterRsp
 import com.kkaka.wanandroid.home.data.HomeArticleRsp
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -40,4 +41,10 @@ interface ApiService {
     fun getLogin(@Query("username") username: String,
                  @Query("password") password: String): Observable<BaseResponse<LoginRsp>>
 
+    /**
+     * 注册
+     */
+    @POST("/user/register")
+    fun getRegister(@Query("username") username: String, @Query("password") password: String,
+                    @Query("repassword") repassword: String): Observable<BaseResponse<RegisterRsp>>
 }

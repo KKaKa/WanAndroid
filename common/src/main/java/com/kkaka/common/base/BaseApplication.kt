@@ -9,8 +9,6 @@ import com.kkaka.common.utils.Preference
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import com.orhanobut.logger.FormatStrategy
-
 
 
 /**
@@ -34,6 +32,7 @@ open class BaseApplication : Application(){
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
 
         Preference.setContext(applicationContext)
+
     }
 
 }
