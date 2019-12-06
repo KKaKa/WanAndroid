@@ -1,8 +1,10 @@
 package com.kkaka.wanandroid.api
 
 import com.kkaka.common.https.BaseResponse
-import com.kkaka.wanandroid.account.data.LoginRsp
-import com.kkaka.wanandroid.account.data.RegisterRsp
+import com.kkaka.wanandroid.account.data.login.LoginRsp
+import com.kkaka.wanandroid.account.data.regist.RegisterRsp
+import com.kkaka.wanandroid.collect.data.CollectRsp
+import com.kkaka.wanandroid.home.data.BannerRsp
 import com.kkaka.wanandroid.home.data.HomeArticleRsp
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -47,4 +49,22 @@ interface ApiService {
     @POST("/user/register")
     fun getRegister(@Query("username") username: String, @Query("password") password: String,
                     @Query("repassword") repassword: String): Observable<BaseResponse<RegisterRsp>>
+
+    /**
+     * 获取收藏
+     */
+    @GET("/lg/collect/list/{page}/json")
+    fun getCollectArticle(@Path("page") page: Int): Observable<BaseResponse<CollectRsp>>
+
+    /**
+     * 取消收藏页收藏
+     */
+    @POST("/lg/uncollect/{id}/json")
+    fun unMyCollect(@Path("id") id: Int, @Query("originId") originId: Int): Observable<BaseResponse<Any>>
+
+    /**
+     * 获取首页轮播图
+     */
+    @GET("/banner/json")
+    fun getBanner(): Observable<BaseResponse<List<BannerRsp>>>
 }

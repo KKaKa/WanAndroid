@@ -1,5 +1,6 @@
 package com.kkaka.wanandroid.home.data
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.kkaka.common.common.State
 import com.kkaka.common.ext.execute
@@ -15,6 +16,10 @@ class HomeRepository(loadState : MutableLiveData<State>) : ArticleRepository(loa
 
     fun getArticle(page : Int,liveData: MutableLiveData<BaseResponse<HomeArticleRsp>>){
         apiService.getHomeArticle(page).execute(BaseObserver(liveData,loadState,this))
+    }
+
+    fun getBanner(liveData: MutableLiveData<BaseResponse<List<BannerRsp>>>) {
+        apiService.getBanner().execute(BaseObserver(liveData,loadState,this))
     }
 
 }

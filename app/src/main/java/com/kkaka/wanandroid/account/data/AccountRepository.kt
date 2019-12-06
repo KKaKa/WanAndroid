@@ -1,10 +1,11 @@
 package com.kkaka.wanandroid.account.data
 
 import android.arch.lifecycle.MutableLiveData
-import com.kkaka.common.base.BaseRepository
 import com.kkaka.common.common.State
 import com.kkaka.common.ext.execute
 import com.kkaka.common.https.BaseResponse
+import com.kkaka.wanandroid.account.data.login.LoginRsp
+import com.kkaka.wanandroid.account.data.regist.RegisterRsp
 import com.kkaka.wanandroid.api.ApiRepository
 import com.kkaka.wanandroid.api.BaseObserver
 

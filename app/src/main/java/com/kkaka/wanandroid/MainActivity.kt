@@ -2,19 +2,32 @@ package com.kkaka.wanandroid
 
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
+import android.view.View
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.kkaka.common.base.BaseActivity
+import com.kkaka.common.constant.Constant
 import com.kkaka.common.constant.Constant.HOME
+import com.kkaka.common.state.UserState
+import com.kkaka.common.state.collect.CollectState
+import com.kkaka.common.state.login.LoginSucListener
+import com.kkaka.common.state.login.LoginSucState
+import com.kkaka.common.utils.Preference
+import com.kkaka.wanandroid.account.data.UserContext
+import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_drawer_header.*
 import kotlinx.android.synthetic.main.layout_drawer_header.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import org.jetbrains.anko.startActivity
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity() ,LoginSucListener{
 
     private lateinit var mCurrentFragment: Fragment
     private val homeFragment :HomeFragment by lazy { HomeFragment() }
+    private lateinit var headerView : View
+    private var mUsername : String by Preference(Constant.USERNAME_KEY,"未登录")
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
@@ -27,6 +40,7 @@ class MainActivity : BaseActivity() {
         initFabButton()
         initBottomNavigationBar()
         defauleFragment()
+        LoginSucState.addListener(this)
     }
 
     private fun defauleFragment() {
@@ -43,12 +57,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initDrawerLayout(){
-        val headerView = navigation.getHeaderView(0)
+        headerView = navigation.getHeaderView(0)
 
-        //TODO 登录
-        headerView.tv_name.text = ""
+        headerView.tv_name.text = mUsername
         headerView.iv_logo.setOnClickListener {
-
+            UserContext.instance.login(this)
         }
 
         navigation.setNavigationItemSelectedListener {
@@ -100,11 +113,21 @@ class MainActivity : BaseActivity() {
     }
 
     private fun logout() {
-
+        UserContext.instance.logoutSuccess()
     }
 
     private fun goCollectActivity() {
+        UserContext.instance.goCollectActivity(this)
+    }
 
+    override fun loginSuccess(username: String, collectIds: List<Int>?) {
+        mUsername = username
+        headerView.tv_name.text = username
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LoginSucState.removeListener(this)
     }
 
 }

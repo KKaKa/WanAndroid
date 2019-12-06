@@ -21,5 +21,7 @@
     <string name="password_ensure_error">前后密码不一致</string>
     <string name="regist_success">注册成功</string>
 
+    <string name="collect">收藏</string>
+
 
 </resources>

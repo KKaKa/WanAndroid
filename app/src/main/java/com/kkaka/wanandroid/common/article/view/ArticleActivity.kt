@@ -1,12 +1,13 @@
 package com.kkaka.wanandroid.common.article.view
 
 import android.arch.lifecycle.Observer
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.kkaka.common.base.LifecycleFragment
+import android.support.v7.widget.Toolbar
+import android.view.View
+import com.kkaka.common.base.LifecycleActivity
 import com.kkaka.common.state.collect.CollectListener
-import com.kkaka.common.state.collect.CollectRefreshListener
-import com.kkaka.common.state.collect.CollectState
-import com.kkaka.common.state.login.LoginSucListener
 import com.kkaka.common.state.login.LoginSucState
 import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.account.data.UserContext
@@ -15,28 +16,42 @@ import com.kkaka.wanandroid.common.article.data.Article
 import com.kkaka.wanandroid.common.article.viewmodel.ArticleViewModel
 import kotlinx.android.synthetic.main.fragment_article.*
 
-/**
- * @author Laizexin on 2019/12/2
- * @description
- */
-abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>(), CollectListener, LoginSucListener,
-    CollectRefreshListener {
+abstract class ArticleActivity<T : ArticleViewModel<*>> : LifecycleActivity<T>(),CollectListener{
 
     private var current = 0
     private var collectState = false
 
     public lateinit var mArticleAdapter :ArticleAdapter
 
-    override fun getLayoutId(): Int = R.layout.fragment_article
+    override fun getLayoutId(): Int = R.layout.activity_article
 
     override fun initView() {
         super.initView()
         initRefresh()
         initRecycleView()
+        if(isAddHeadView())
+            addHeadView()
+    }
+
+    private fun addHeadView() {
+        val headView = View.inflate(this, R.layout.common_bar,null)
+        (headView as Toolbar).let {
+            it.setTitle(headTitle())
+            setSupportActionBar(it)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        mArticleAdapter.addHeaderView(headView)
+    }
+
+    private fun initRefresh() {
+        msrlRefresh.setColorSchemeResources(R.color.colorPrimaryDark)
+        msrlRefresh.setOnRefreshListener {
+            onRefreshData()
+        }
     }
 
     private fun initRecycleView() {
-        mRvArticle.layoutManager = LinearLayoutManager(activity)
+        mRvArticle.layoutManager = LinearLayoutManager(this)
         mArticleAdapter = ArticleAdapter(R.layout.item_article,null)
         mRvArticle.adapter = mArticleAdapter
 
@@ -51,34 +66,10 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
         mArticleAdapter.setOnItemChildClickListener { adapter, view, position ->
             run {
                 if (view.id == R.id.mIvCollect) {
-                    UserContext.instance.collect(activity, position, this)
+                    UserContext.instance.collect(this, position, this)
                 }
             }
         }
-
-        LoginSucState.addListener(this)
-        CollectState.addListener(this)
-    }
-
-    abstract fun onRefreshData()
-
-    abstract fun onLoadMore()
-
-    private fun initRefresh() {
-        msrlRefresh.setColorSchemeResources(R.color.colorPrimaryDark)
-        msrlRefresh.setOnRefreshListener {
-            onRefreshData()
-        }
-    }
-
-    override fun dataObserver() {
-        mViewModel.mCollectData.observe(this, Observer { response ->
-            val item = mArticleAdapter.getItem(current)
-            item?.let {
-                it.collect = !collectState
-                mArticleAdapter.notifyItemChanged(current)
-            }
-        })
     }
 
     fun addData(datas: List<Article>) {
@@ -100,6 +91,26 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
         mArticleAdapter.loadMoreComplete()
     }
 
+    open fun headTitle() : Int{
+        return R.string.app_name
+    }
+
+    abstract fun isAddHeadView() : Boolean
+
+    abstract fun onRefreshData()
+
+    abstract fun onLoadMore()
+
+    override fun dataObserver() {
+        mViewModel.mCollectData.observe(this, Observer { response ->
+            val item = mArticleAdapter.getItem(current)
+            item?.let {
+                it.collect = !collectState
+                mArticleAdapter.notifyItemChanged(current)
+            }
+        })
+    }
+
     override fun collect(position: Int) {
         val item = mArticleAdapter.getItem(position)
         item?.let {
@@ -109,35 +120,4 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
         }
     }
 
-    override fun loginSuccess(username: String, collectIds: List<Int>?) {
-        //更新收藏 如果collectIds存在不存在都要做
-
-        collectIds?.let {
-            it.forEach {id ->
-                mArticleAdapter.data.forEach {
-                    if(it.id == id){
-                        it.collect = true
-                    }
-                }
-            }
-        } ?: let {
-            mArticleAdapter.data.forEach {
-                if(it.collect){
-                    it.collect = false
-                }
-            }
-        }
-        mArticleAdapter.notifyDataSetChanged()
-    }
-
-    override fun onCollectRefresh(id: Int, originId: Int) {
-        msrlRefresh.isRefreshing = true
-        reLoad()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        LoginSucState.removeListener(this)
-        CollectState.removeListener(this)
-    }
 }

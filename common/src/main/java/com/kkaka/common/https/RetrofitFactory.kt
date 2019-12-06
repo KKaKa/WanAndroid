@@ -78,7 +78,7 @@ class RetrofitFactory private constructor(){
                     builder.addHeader(Constant.COOKIE_NAME,mCookie)
                 }
             }
-            val response = chain.proceed(request)
+            val response = chain.proceed(builder.build())
             response
         }
     }

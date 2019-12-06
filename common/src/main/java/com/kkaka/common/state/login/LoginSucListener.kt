@@ -6,5 +6,5 @@ package com.kkaka.common.state.login
  * desc：    登录成功的回调
  */
 interface LoginSucListener {
-    fun success(username: String, collectIds: List<Int>?)
+    fun loginSuccess(username: String, collectIds: List<Int>?)
 }

@@ -8,8 +8,8 @@ import com.kkaka.common.common.StateType
 import com.kkaka.common.https.BaseResponse
 import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.account.data.AccountRepository
-import com.kkaka.wanandroid.account.data.LoginRsp
-import com.kkaka.wanandroid.account.data.RegisterRsp
+import com.kkaka.wanandroid.account.data.login.LoginRsp
+import com.kkaka.wanandroid.account.data.regist.RegisterRsp
 
 
 /**

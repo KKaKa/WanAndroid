@@ -11,4 +11,8 @@ interface UserState {
 
     fun collect(context: Context?,position : Int,listener: CollectListener)
 
+    fun login(context: Context?)
+
+    fun goCollectActivity(context: Context?)
+
 }

@@ -1,4 +1,4 @@
-package com.kkaka.wanandroid.account.data
+package com.kkaka.wanandroid.account.data.regist
 
 /**
  * author：  HyZhan

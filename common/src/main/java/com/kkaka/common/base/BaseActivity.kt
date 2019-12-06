@@ -38,10 +38,8 @@ abstract class BaseActivity : AppCompatActivity(){
 
     abstract fun getLayoutId(): Int
 
-    // 重新加载
     open fun reLoad() {}
 
-    // 设置 防错误操作 退出 activity
     override fun onBackPressed() {}
 
     /**
