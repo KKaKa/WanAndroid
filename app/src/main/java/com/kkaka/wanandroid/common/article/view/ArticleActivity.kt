@@ -1,14 +1,11 @@
 package com.kkaka.wanandroid.common.article.view
 
 import android.arch.lifecycle.Observer
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.kkaka.common.base.LifecycleActivity
 import com.kkaka.common.state.collect.CollectListener
-import com.kkaka.common.state.login.LoginSucState
 import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.common.adapter.ArticleAdapter
@@ -29,7 +26,7 @@ abstract class ArticleActivity<T : ArticleViewModel<*>> : LifecycleActivity<T>()
         super.initView()
         initRefresh()
         initRecycleView()
-        if(isAddHeadView())
+        if(isAddToolbar())
             addHeadView()
     }
 
@@ -95,7 +92,7 @@ abstract class ArticleActivity<T : ArticleViewModel<*>> : LifecycleActivity<T>()
         return R.string.app_name
     }
 
-    abstract fun isAddHeadView() : Boolean
+    abstract fun isAddToolbar() : Boolean
 
     abstract fun onRefreshData()
 

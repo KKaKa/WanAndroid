@@ -8,7 +8,7 @@ import com.kkaka.wanandroid.common.article.view.ArticleActivity
 
 class CollectActivity : ArticleActivity<CollectViewModel>() {
 
-    override fun isAddHeadView(): Boolean = true
+    override fun isAddToolbar(): Boolean = true
 
     private var index = 0;
     private var id : Int = 0

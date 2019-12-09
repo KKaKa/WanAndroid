@@ -1,10 +1,5 @@
 package com.kkaka.wanandroid.common.article.data
 
-/**
- * author：  HyZhan
- * created： 2018/10/22 20:47
- * desc：    TODO
- */
 data class Article(
         var id: Int,
         var author: String,

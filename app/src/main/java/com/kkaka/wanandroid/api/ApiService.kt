@@ -6,6 +6,8 @@ import com.kkaka.wanandroid.account.data.regist.RegisterRsp
 import com.kkaka.wanandroid.collect.data.CollectRsp
 import com.kkaka.wanandroid.home.data.BannerRsp
 import com.kkaka.wanandroid.home.data.HomeArticleRsp
+import com.kkaka.wanandroid.wechat.data.WeChatListRsp
+import com.kkaka.wanandroid.wechat.data.WeChatNameRsp
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -67,4 +69,17 @@ interface ApiService {
      */
     @GET("/banner/json")
     fun getBanner(): Observable<BaseResponse<List<BannerRsp>>>
+
+    /**
+     * 获取微信头
+     */
+    @GET("/wxarticle/chapters/json")
+    fun getWeChat(): Observable<BaseResponse<List<WeChatNameRsp>>>
+
+    /**
+     * 获取微信文章列表
+     */
+    @GET("/wxarticle/list/{id}/{page}/json")
+    fun getWeChatList(@Path("id") id: Int, @Path("page") page: Int)
+            : Observable<BaseResponse<WeChatListRsp>>
 }

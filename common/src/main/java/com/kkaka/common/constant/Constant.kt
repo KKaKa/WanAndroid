@@ -17,10 +17,10 @@ object Constant {
     const val COOKIE_NAME = "Cookie"
 
     const val HOME = 0
-    const val WE_CHAT = 0
-    const val SYSTEM = 0
-    const val NAGIVATION = 0
-    const val PROJECT = 0
+    const val WE_CHAT = 1
+    const val SYSTEM = 2
+    const val NAGIVATION = 3
+    const val PROJECT = 4
 
     const val RESPONSE_SUCCESS = 0
     const val RESPONSE_NOT_LOGIN = -1001

@@ -1,10 +1,5 @@
 package com.kkaka.wanandroid.account.data.regist
 
-/**
- * author：  HyZhan
- * created： 2018/10/30 16:31
- * desc：    TODO
- */
 data class RegisterRsp(
         var username: String,
         var id: Int,

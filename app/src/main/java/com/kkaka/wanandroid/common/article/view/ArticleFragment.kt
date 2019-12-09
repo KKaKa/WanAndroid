@@ -9,11 +9,13 @@ import com.kkaka.common.state.collect.CollectState
 import com.kkaka.common.state.login.LoginSucListener
 import com.kkaka.common.state.login.LoginSucState
 import com.kkaka.wanandroid.R
+import com.kkaka.wanandroid.WebActivity
 import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.common.adapter.ArticleAdapter
 import com.kkaka.wanandroid.common.article.data.Article
 import com.kkaka.wanandroid.common.article.viewmodel.ArticleViewModel
 import kotlinx.android.synthetic.main.fragment_article.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * @author Laizexin on 2019/12/2
@@ -44,9 +46,13 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
         mArticleAdapter.setEnableLoadMore(true)
         mArticleAdapter.setOnLoadMoreListener({onLoadMore()},mRvArticle)
 
-        mArticleAdapter.setOnItemClickListener { adapter, view, position -> {
-            //跳转
-        } }
+        mArticleAdapter.setOnItemClickListener { adapter, view, position ->
+
+            val item = mArticleAdapter.getItem(position)
+            item?.let {
+                startActivity<WebActivity>("url" to it.link,"title" to it.title)
+            }
+        }
 
         mArticleAdapter.setOnItemChildClickListener { adapter, view, position ->
             run {
@@ -76,7 +82,7 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
             val item = mArticleAdapter.getItem(current)
             item?.let {
                 it.collect = !collectState
-                mArticleAdapter.notifyItemChanged(current)
+                mArticleAdapter.refreshNotifyItemChanged(current)
             }
         })
     }

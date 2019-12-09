@@ -2,6 +2,8 @@ package com.kkaka.wanandroid
 
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
+import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
@@ -16,6 +18,7 @@ import com.kkaka.common.utils.Preference
 import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
+import com.kkaka.wanandroid.wechat.view.WeChatFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_drawer_header.*
 import kotlinx.android.synthetic.main.layout_drawer_header.view.*
@@ -26,6 +29,7 @@ class MainActivity : BaseActivity() ,LoginSucListener{
 
     private lateinit var mCurrentFragment: Fragment
     private val homeFragment :HomeFragment by lazy { HomeFragment() }
+    private val weChatFragment :WeChatFragment by lazy { WeChatFragment() }
     private lateinit var headerView : View
     private var mUsername : String by Preference(Constant.USERNAME_KEY,"未登录")
 
@@ -109,8 +113,45 @@ class MainActivity : BaseActivity() ,LoginSucListener{
     }
 
     private fun switchFragment(position: Int) {
+        when(position){
+            Constant.HOME -> {
+                setToolBar(toolbar,getString(R.string.navigation_home))
+                changeFragment(homeFragment)
+            }
 
+            Constant.WE_CHAT ->{
+                setToolBar(toolbar,getString(R.string.navigation_wechat))
+                changeFragment(weChatFragment)
+            }
+
+            else -> {
+
+            }
+        }
     }
+
+    private fun changeFragment(to : Fragment){
+        if (mCurrentFragment != to) {
+            val transaction = supportFragmentManager.beginTransaction()
+            if (to.isAdded)
+                transaction.hide(mCurrentFragment).show(to)
+            else
+                transaction.hide(mCurrentFragment).add(R.id.content, to)
+            transaction.commit()
+            mCurrentFragment = to
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home ->{
+                drawerMain.openDrawer(Gravity.START)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun logout() {
         UserContext.instance.logoutSuccess()

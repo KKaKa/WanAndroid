@@ -3,6 +3,7 @@ package com.kkaka.wanandroid.home.view
 import android.arch.lifecycle.Observer
 import android.view.View
 import com.kkaka.wanandroid.R
+import com.kkaka.wanandroid.WebActivity
 import com.kkaka.wanandroid.common.GlideImageLoader
 import com.kkaka.wanandroid.common.article.view.ArticleFragment
 import com.kkaka.wanandroid.home.data.BannerRsp
@@ -11,6 +12,7 @@ import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.layout_home_headview.view.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * @author Laizexin on 2019/12/2
@@ -39,7 +41,7 @@ class HomeFragment : ArticleFragment<HomeViewModel>() {
             .setDelayTime(3000)
             .setBannerAnimation(Transformer.FlipHorizontal)
             .setOnBannerListener {
-                //TODO 跳转
+                startActivity<WebActivity>("url" to bannerUrls[it],"title" to bannerTitles[it])
             }
         mArticleAdapter.addHeaderView(headView)
     }
