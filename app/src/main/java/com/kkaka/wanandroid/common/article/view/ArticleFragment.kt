@@ -1,19 +1,26 @@
 package com.kkaka.wanandroid.common.article.view
 
 import android.arch.lifecycle.Observer
+import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.kkaka.common.base.LifecycleFragment
 import com.kkaka.common.state.collect.CollectListener
 import com.kkaka.common.state.collect.CollectRefreshListener
 import com.kkaka.common.state.collect.CollectState
 import com.kkaka.common.state.login.LoginSucListener
 import com.kkaka.common.state.login.LoginSucState
+import com.kkaka.wanandroid.MainActivity
 import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.WebActivity
 import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.common.adapter.ArticleAdapter
 import com.kkaka.wanandroid.common.article.data.Article
 import com.kkaka.wanandroid.common.article.viewmodel.ArticleViewModel
+import com.kkaka.wanandroid.common.behavior.HideScrollListener
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.common_bar.*
 import kotlinx.android.synthetic.main.fragment_article.*
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -26,10 +33,16 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
 
     private var current = 0
     private var collectState = false
+    private lateinit var mActivity : MainActivity
 
     public lateinit var mArticleAdapter :ArticleAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_article
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mActivity = activity as MainActivity
+    }
 
     override fun initView() {
         super.initView()
@@ -61,6 +74,17 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
                 }
             }
         }
+
+        mRvArticle.addOnScrollListener(object : HideScrollListener(){
+            override fun onHide() {
+                mActivity.onHide()
+            }
+
+            override fun onShow() {
+                mActivity.onShow()
+            }
+
+        })
 
         LoginSucState.addListener(this)
         CollectState.addListener(this)

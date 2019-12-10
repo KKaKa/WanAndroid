@@ -1,8 +1,5 @@
 package com.kkaka.wanandroid
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.Toolbar
 import android.widget.FrameLayout
 import com.just.agentweb.AgentWeb

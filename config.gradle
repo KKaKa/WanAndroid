@@ -22,6 +22,7 @@ ext {
     glide_version       = '4.8.0'
     banner_version      = '1.4.10'
     agentweb_version    = '4.1.2'
+    flexbox_version     = '1.0.0'
     circleimageview_version = '2.2.0'
     baseaadapter_version    = '2.9.47'
 
@@ -57,7 +58,8 @@ ext {
             "logger"                          : "com.orhanobut:logger:$logger_version",
             "glide"                           : "com.github.bumptech.glide:glide:$glide_version",
             "banner"                          : "com.youth.banner:banner:$banner_version",
-            "agentweb"                        : "com.just.agentweb:agentweb:$agentweb_version"
+            "agentweb"                        : "com.just.agentweb:agentweb:$agentweb_version",
+            "flexboxLayout"                   : "com.google.android:flexbox:$flexbox_version"
     ]
 
     processor = [

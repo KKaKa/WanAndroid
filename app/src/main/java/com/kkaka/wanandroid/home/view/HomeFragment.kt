@@ -2,6 +2,7 @@ package com.kkaka.wanandroid.home.view
 
 import android.arch.lifecycle.Observer
 import android.view.View
+import android.view.ViewGroup
 import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.WebActivity
 import com.kkaka.wanandroid.common.GlideImageLoader
@@ -86,7 +87,6 @@ class HomeFragment : ArticleFragment<HomeViewModel>() {
     override fun onRefreshData() {
         page = 0
         mViewModel.getArticle(page)
-
     }
 
     override fun onLoadMore() {

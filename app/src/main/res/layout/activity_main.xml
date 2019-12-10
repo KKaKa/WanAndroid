@@ -19,8 +19,7 @@
         <FrameLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent">
 
             <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab"
@@ -28,22 +27,22 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="66dp"
                     android:src="@drawable/fab_add"
                     app:borderWidth="0dp"
                     app:rippleColor="@color/colorPrimaryDark"
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
+
+            <!-- BottomNavigationBar-->
+            <com.ashokvarma.bottomnavigation.BottomNavigationBar
+                    android:id="@+id/mNavigationBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+            </com.ashokvarma.bottomnavigation.BottomNavigationBar>
         </FrameLayout>
-
-        <!-- BottomNavigationBar-->
-        <com.ashokvarma.bottomnavigation.BottomNavigationBar
-                android:id="@+id/mNavigationBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
-
-        </com.ashokvarma.bottomnavigation.BottomNavigationBar>
 
     </LinearLayout>
 

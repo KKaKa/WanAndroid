@@ -6,6 +6,7 @@ import com.kkaka.wanandroid.account.data.regist.RegisterRsp
 import com.kkaka.wanandroid.collect.data.CollectRsp
 import com.kkaka.wanandroid.home.data.BannerRsp
 import com.kkaka.wanandroid.home.data.HomeArticleRsp
+import com.kkaka.wanandroid.nagivation.data.NagivationCategoryRsp
 import com.kkaka.wanandroid.wechat.data.WeChatListRsp
 import com.kkaka.wanandroid.wechat.data.WeChatNameRsp
 import io.reactivex.Observable
@@ -82,4 +83,10 @@ interface ApiService {
     @GET("/wxarticle/list/{id}/{page}/json")
     fun getWeChatList(@Path("id") id: Int, @Path("page") page: Int)
             : Observable<BaseResponse<WeChatListRsp>>
+
+    /**
+     * 导航页面数据
+     */
+    @GET("/navi/json")
+    fun getCategory(): Observable<BaseResponse<List<NagivationCategoryRsp>>>
 }

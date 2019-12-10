@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.kkaka.common.base.BaseActivity
@@ -18,6 +20,7 @@ import com.kkaka.common.utils.Preference
 import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
+import com.kkaka.wanandroid.nagivation.view.NagivationFragment
 import com.kkaka.wanandroid.wechat.view.WeChatFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_drawer_header.*
@@ -30,6 +33,7 @@ class MainActivity : BaseActivity() ,LoginSucListener{
     private lateinit var mCurrentFragment: Fragment
     private val homeFragment :HomeFragment by lazy { HomeFragment() }
     private val weChatFragment :WeChatFragment by lazy { WeChatFragment() }
+    private val nagivationFragment :NagivationFragment by lazy { NagivationFragment() }
     private lateinit var headerView : View
     private var mUsername : String by Preference(Constant.USERNAME_KEY,"未登录")
 
@@ -124,6 +128,10 @@ class MainActivity : BaseActivity() ,LoginSucListener{
                 changeFragment(weChatFragment)
             }
 
+            Constant.NAGIVATION ->{
+                setToolBar(toolbar,getString(R.string.navigation_navigation))
+                changeFragment(nagivationFragment)
+            }
             else -> {
 
             }
@@ -164,6 +172,19 @@ class MainActivity : BaseActivity() ,LoginSucListener{
     override fun loginSuccess(username: String, collectIds: List<Int>?) {
         mUsername = username
         headerView.tv_name.text = username
+    }
+
+    public fun onShow(){
+        fab.animate().translationX(0f).interpolator = AccelerateDecelerateInterpolator()
+        mNavigationBar.animate().translationY(0f).interpolator = AccelerateDecelerateInterpolator()
+    }
+
+    public fun onHide(){
+        val layoutParams = fab.layoutParams
+        val leftMargin = (layoutParams as ViewGroup.MarginLayoutParams).marginEnd
+        fab.animate().translationX(fab.width.toFloat() + leftMargin).interpolator = AccelerateDecelerateInterpolator()
+
+        mNavigationBar.animate().translationY(mNavigationBar.height.toFloat()).interpolator = AccelerateDecelerateInterpolator()
     }
 
     override fun onDestroy() {
