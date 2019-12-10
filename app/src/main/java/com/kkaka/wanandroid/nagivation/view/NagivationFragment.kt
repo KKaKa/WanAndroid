@@ -59,20 +59,12 @@ class NagivationFragment : LifecycleFragment<NagivationViewModel>(){
         mRvLabel.layoutManager = FlexboxLayoutManager(activity)
         mRvLabel.adapter = mLableAdapter
 
-//        mRvLabel.addOnScrollListener(object : HideScrollListener(){
-//            override fun onHide() {
-//                mActivity.onHide()
-//            }
-//
-//            override fun onShow() {
-//                mActivity.onShow()
-//            }
-//        })
-
         mLableAdapter.setOnItemChildClickListener { adapter, view, position ->
             startActivity<WebActivity>("url" to (adapter.data[position] as LableRsp).link,
                 "title" to (adapter.data[position] as LableRsp).title)
         }
+
+        mLableAdapter.openLoadAnimation()
     }
 
     override fun initData() {

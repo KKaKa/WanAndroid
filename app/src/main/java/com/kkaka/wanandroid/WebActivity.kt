@@ -14,7 +14,7 @@ class WebActivity : BaseActivity() {
 
     override fun initView() {
         super.initView()
-        val url = intent.getStringExtra("url")
+        var url = intent.getStringExtra("url")
         val title = intent.getStringExtra("title")
         setToolBar(toolbar as Toolbar,title)
 
