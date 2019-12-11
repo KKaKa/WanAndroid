@@ -7,6 +7,8 @@ import com.kkaka.wanandroid.collect.data.CollectRsp
 import com.kkaka.wanandroid.home.data.BannerRsp
 import com.kkaka.wanandroid.home.data.HomeArticleRsp
 import com.kkaka.wanandroid.nagivation.data.NagivationCategoryRsp
+import com.kkaka.wanandroid.search.data.HotSearchRsp
+import com.kkaka.wanandroid.search.data.SearchResultRsp
 import com.kkaka.wanandroid.wechat.data.WeChatListRsp
 import com.kkaka.wanandroid.wechat.data.WeChatNameRsp
 import io.reactivex.Observable
@@ -89,4 +91,16 @@ interface ApiService {
      */
     @GET("/navi/json")
     fun getCategory(): Observable<BaseResponse<List<NagivationCategoryRsp>>>
+
+    /**
+     * 搜索
+     */
+    @POST("/article/query/{page}/json")
+    fun search(@Path("page") page: Int, @Query("k") key: String): Observable<BaseResponse<SearchResultRsp>>
+
+    /**
+     * 热门搜索
+     */
+    @GET("/hotkey/json")
+    fun getHotKey(): Observable<BaseResponse<List<HotSearchRsp>>>
 }

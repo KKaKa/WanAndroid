@@ -21,6 +21,7 @@ import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
 import com.kkaka.wanandroid.nagivation.view.NagivationFragment
+import com.kkaka.wanandroid.search.view.SearchActivity
 import com.kkaka.wanandroid.wechat.view.WeChatFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_drawer_header.*
@@ -90,6 +91,9 @@ class MainActivity : BaseActivity() ,LoginSucListener{
     private fun initFabButton() {
         fab.setOnClickListener{}
         mNavigationBar.setFab(fab)
+        fab.setOnClickListener {
+            startActivity<SearchActivity>()
+        }
     }
 
     private fun initBottomNavigationBar() {

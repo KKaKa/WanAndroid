@@ -31,7 +31,7 @@ abstract class ArticleActivity<T : ArticleViewModel<*>> : LifecycleActivity<T>()
     }
 
     private fun addHeadView() {
-        val headView = View.inflate(this, R.layout.common_bar,null)
+        val headView = View.inflate(this, R.layout.layout_toolbar,null)
         (headView as Toolbar).let {
             it.setTitle(headTitle())
             setSupportActionBar(it)

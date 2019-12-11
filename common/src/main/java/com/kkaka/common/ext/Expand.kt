@@ -1,6 +1,9 @@
 package com.kkaka.common.ext
 
+import android.app.Activity
 import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -35,4 +38,11 @@ fun ImageView.loadImage(context: Context, path: String, placeholder: Int = R.dra
         .override(150, 200)
 
     Glide.with(context).load(path).apply(options).into(this)
+}
+
+// 关闭软键盘
+fun Activity.hideKeyboard() {
+    // 当前焦点的 View
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 }

@@ -19,8 +19,6 @@ import com.kkaka.wanandroid.common.adapter.ArticleAdapter
 import com.kkaka.wanandroid.common.article.data.Article
 import com.kkaka.wanandroid.common.article.viewmodel.ArticleViewModel
 import com.kkaka.wanandroid.common.behavior.HideScrollListener
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.common_bar.*
 import kotlinx.android.synthetic.main.fragment_article.*
 import org.jetbrains.anko.support.v4.startActivity
 
