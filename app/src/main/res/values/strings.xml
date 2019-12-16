@@ -22,6 +22,8 @@
     <string name="regist_success">注册成功</string>
 
     <string name="collect">收藏</string>
+    <string name="hot_search">热门搜索</string>
+    <string name="search_history">搜索历史</string>
 
 
 </resources>

@@ -7,6 +7,8 @@ import com.kkaka.common.common.StateType
 import com.kkaka.common.constant.Constant
 import com.kkaka.common.https.BaseResponse
 import com.kkaka.wanandroid.BuildConfig
+import com.kkaka.wanandroid.account.data.UserContext
+import com.kkaka.wanandroid.search.data.SearchResultRsp
 import com.orhanobut.logger.Logger
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -37,12 +39,12 @@ class BaseObserver<T : BaseResponse<*>>(
                         return
                     }
                 }
-
                 loadState.postValue(State(StateType.SUCCESS))
                 liveData.postValue(response)
             }
             Constant.RESPONSE_NOT_LOGIN ->{
-                //TODO 未登录
+                UserContext.instance.logoutSuccess()
+                loadState.postValue(State(StateType.ERROR,msg = "登录过期"))
             }
             else -> {
                 loadState.postValue(State(StateType.ERROR,msg = response.errorMsg))

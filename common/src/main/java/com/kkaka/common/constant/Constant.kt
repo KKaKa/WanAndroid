@@ -25,5 +25,7 @@ object Constant {
     const val RESPONSE_SUCCESS = 0
     const val RESPONSE_NOT_LOGIN = -1001
 
+    const val SEARCH_HISTORY_MAX = 10
+
 
 }

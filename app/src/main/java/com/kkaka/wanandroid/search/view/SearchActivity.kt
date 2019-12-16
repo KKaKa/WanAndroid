@@ -5,22 +5,26 @@ import android.graphics.Color
 import android.support.v7.widget.SearchView
 import android.view.View
 import android.widget.ImageView
-import com.google.android.flexbox.FlexboxLayoutManager
 import com.kkaka.common.ext.hideKeyboard
 import com.kkaka.common.ext.str
 import com.kkaka.wanandroid.R
+import com.kkaka.wanandroid.common.MyFlexboxLayoutManager
+import com.kkaka.wanandroid.common.adapter.HistorySearchAdapter
 import com.kkaka.wanandroid.common.adapter.HotSearchAdapter
 import com.kkaka.wanandroid.common.article.data.Article
 import com.kkaka.wanandroid.common.article.view.ArticleActivity
 import com.kkaka.wanandroid.search.data.HotSearchRsp
+import com.kkaka.wanandroid.search.data.db.Record
 import com.kkaka.wanandroid.search.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.layout_search_head.view.*
 
 class SearchActivity : ArticleActivity<SearchViewModel>() {
 
     private var page = 0
     private lateinit var tv : SearchView.SearchAutoComplete
     private val mHotSearchAdapter: HotSearchAdapter by lazy { HotSearchAdapter(R.layout.item_lable,null) }
+    private val mHistorySearchAdapter: HistorySearchAdapter by lazy { HistorySearchAdapter(R.layout.item_lable,null) }
 
     override fun isAddToolbar(): Boolean = false
 
@@ -30,20 +34,40 @@ class SearchActivity : ArticleActivity<SearchViewModel>() {
         super.initView()
         initHotSearchView()
         initSearchView()
+        initSearchHistory()
     }
 
     override fun initData() {
         mViewModel.getHotSearch()
+        mViewModel.getHistorySearch()
     }
 
     private fun initHotSearchView() {
-        mRvHotSearch.layoutManager = FlexboxLayoutManager(this)
+        mRvHotSearch.layoutManager = MyFlexboxLayoutManager(this)
         mRvHotSearch.adapter = mHotSearchAdapter
-        mHotSearchAdapter.setOnItemChildClickListener { adapter, view, position ->
+        mHotSearchAdapter.setOnItemChildClickListener { adapter, _, position ->
             val str = (adapter.data[position] as HotSearchRsp).name
             tv.setText(str)
             mViewModel.search(page,str)
         }
+        val headView = View.inflate(this,R.layout.layout_search_head,null)
+        headView.mTvHeadView.text = getString(R.string.hot_search)
+        mHotSearchAdapter.addHeaderView(headView)
+    }
+
+    private fun initSearchHistory() {
+        mRvHistory.layoutManager = MyFlexboxLayoutManager(this)
+        mRvHistory.adapter = mHistorySearchAdapter
+
+        mHistorySearchAdapter.setOnItemChildClickListener { adapter, _, position ->
+            val str = (adapter.data[position] as Record).name
+            tv.setText(str)
+            tv.setSelection(str.length)
+            mViewModel.search(page,str)
+        }
+        val headView = View.inflate(this,R.layout.layout_search_head,null)
+        headView.mTvHeadView.text = getString(R.string.search_history)
+        mHistorySearchAdapter.addHeaderView(headView)
     }
 
     private fun initSearchView() {
@@ -134,7 +158,7 @@ class SearchActivity : ArticleActivity<SearchViewModel>() {
             it?.let {
                 showSearchResult(it.data.datas)
             }
-            //TODO 添加搜索历史
+            addHistorySearch(tv.str())
         })
 
         mViewModel.mHotKeyData.observe(this, Observer {
@@ -142,6 +166,20 @@ class SearchActivity : ArticleActivity<SearchViewModel>() {
                 showHotSearch(it.data)
             }
         })
+
+        mViewModel.mSearchHistory.observe(this, Observer {
+            showHistoryResult(it)
+        })
+    }
+
+    private fun addHistorySearch(str: String) {
+        mViewModel.addHistorySearch(str)
+    }
+
+    private fun showHistoryResult(data: List<Record>?) {
+        data?.let {
+            mHistorySearchAdapter.replaceData(data)
+        }
     }
 
     private fun showHotSearch(data: List<HotSearchRsp>) {

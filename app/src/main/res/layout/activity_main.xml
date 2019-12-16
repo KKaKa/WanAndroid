@@ -28,7 +28,7 @@
                     android:layout_gravity="bottom|end"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="66dp"
-                    android:src="@drawable/fab_add"
+                    android:src="@drawable/fab_search"
                     app:borderWidth="0dp"
                     app:rippleColor="@color/colorPrimaryDark"
                     android:backgroundTint="@color/colorPrimaryDark"/>
