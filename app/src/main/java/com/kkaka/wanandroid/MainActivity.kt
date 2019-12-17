@@ -10,6 +10,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.kkaka.common.base.BaseActivity
+import com.kkaka.common.common.AppManager
 import com.kkaka.common.constant.Constant
 import com.kkaka.common.constant.Constant.HOME
 import com.kkaka.common.state.UserState
@@ -22,21 +23,25 @@ import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
 import com.kkaka.wanandroid.nagivation.view.NagivationFragment
 import com.kkaka.wanandroid.search.view.SearchActivity
+import com.kkaka.wanandroid.system.view.SystemFragment
 import com.kkaka.wanandroid.wechat.view.WeChatFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_drawer_header.*
 import kotlinx.android.synthetic.main.layout_drawer_header.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity() ,LoginSucListener{
 
     private lateinit var mCurrentFragment: Fragment
     private val homeFragment :HomeFragment by lazy { HomeFragment() }
     private val weChatFragment :WeChatFragment by lazy { WeChatFragment() }
+    private val systemFragment :SystemFragment by lazy { SystemFragment() }
     private val nagivationFragment :NagivationFragment by lazy { NagivationFragment() }
     private lateinit var headerView : View
     private var mUsername : String by Preference(Constant.USERNAME_KEY,"未登录")
+    private var pressTime: Long = 0
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
@@ -136,6 +141,12 @@ class MainActivity : BaseActivity() ,LoginSucListener{
                 setToolBar(toolbar,getString(R.string.navigation_navigation))
                 changeFragment(nagivationFragment)
             }
+
+            Constant.SYSTEM ->{
+                setToolBar(toolbar,getString(R.string.navigation_system))
+                changeFragment(systemFragment)
+            }
+
             else -> {
 
             }
@@ -189,6 +200,16 @@ class MainActivity : BaseActivity() ,LoginSucListener{
         fab.animate().translationX(fab.width.toFloat() + leftMargin).interpolator = AccelerateDecelerateInterpolator()
 
         mNavigationBar.animate().translationY(mNavigationBar.height.toFloat()).interpolator = AccelerateDecelerateInterpolator()
+    }
+
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast(getString(R.string.exit_app))
+            pressTime = time
+        } else {
+            AppManager.instance.exitApp(this)
+        }
     }
 
     override fun onDestroy() {

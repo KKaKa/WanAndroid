@@ -9,6 +9,7 @@ import com.kkaka.wanandroid.home.data.HomeArticleRsp
 import com.kkaka.wanandroid.nagivation.data.NagivationCategoryRsp
 import com.kkaka.wanandroid.search.data.HotSearchRsp
 import com.kkaka.wanandroid.search.data.SearchResultRsp
+import com.kkaka.wanandroid.system.data.TopMenuRsp
 import com.kkaka.wanandroid.wechat.data.WeChatListRsp
 import com.kkaka.wanandroid.wechat.data.WeChatNameRsp
 import io.reactivex.Observable
@@ -103,4 +104,10 @@ interface ApiService {
      */
     @GET("/hotkey/json")
     fun getHotKey(): Observable<BaseResponse<List<HotSearchRsp>>>
+
+    /**
+     * 体系一级菜单
+     */
+    @GET("/tree/json")
+    fun getTopMenu(): Observable<BaseResponse<List<TopMenuRsp>>>
 }
