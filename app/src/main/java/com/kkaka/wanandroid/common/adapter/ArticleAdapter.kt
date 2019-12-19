@@ -2,6 +2,7 @@ package com.kkaka.wanandroid.common.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.kkaka.common.ext.toHtml
 import com.kkaka.wanandroid.R
 import com.kkaka.wanandroid.common.article.data.Article
 
@@ -14,7 +15,7 @@ class ArticleAdapter(layoutId : Int,datas : List<Article>?) : BaseQuickAdapter<A
     override fun convert(viewHoler: BaseViewHolder, item: Article?) {
         item?.let {
             viewHoler.setText(R.id.mTvAuthor,if(it.author.isEmpty()) it.shareUser else it.author)
-                .setText(R.id.mTvTitle,it.title)
+                .setText(R.id.mTvTitle,it.title.toHtml())
                 .setText(R.id.mTvTime,if(it.niceDate.isEmpty()) it.niceDate else it.niceShareDate)
                 .setText(R.id.mTvCategory,buildCategory(it))
                 .setImageResource(R.id.mIvCollect,isCollect(it.collect))

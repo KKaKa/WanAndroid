@@ -2,6 +2,7 @@ package com.kkaka.common.ext
 
 import android.app.Activity
 import android.content.Context
+import android.text.Html
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -45,4 +46,12 @@ fun Activity.hideKeyboard() {
     // 当前焦点的 View
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+}
+
+fun String.toHtml(): String {
+    return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
+    } else {
+        Html.fromHtml(this).toString()
+    }
 }

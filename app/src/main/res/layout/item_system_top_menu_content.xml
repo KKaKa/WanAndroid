@@ -5,7 +5,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="8dp"
+        android:padding="15dp"
         xmlns:tools="http://schemas.android.com/tools">
     <TextView
             android:id="@+id/mTvSecond"

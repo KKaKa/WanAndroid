@@ -61,6 +61,5 @@ class CollectActivity : ArticleActivity<CollectViewModel>() {
         }
     }
 
-    override fun onBackPressed() = finish()
 
 }

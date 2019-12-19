@@ -191,7 +191,4 @@ class SearchActivity : ArticleActivity<SearchViewModel>() {
         hideHistory()
         hideHotSearch()
     }
-
-    override fun onBackPressed() = finish()
-
 }

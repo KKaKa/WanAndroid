@@ -40,7 +40,7 @@ abstract class BaseActivity : AppCompatActivity(){
 
     open fun reLoad() {}
 
-    override fun onBackPressed() {}
+    override fun onBackPressed() = finish()
 
     /**
      *  设置 toolbar 标题

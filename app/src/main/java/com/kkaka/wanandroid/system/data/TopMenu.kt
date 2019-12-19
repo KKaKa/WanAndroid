@@ -9,11 +9,13 @@ import com.chad.library.adapter.base.entity.SectionEntity
 class TopMenu : SectionEntity<SecondMenuRsp> {
 
     var isMore: Boolean = false
+    lateinit var childrens: List<SecondMenuRsp>
 
-    constructor(isHeader: Boolean, header: String, isMroe: Boolean) : super(isHeader, header) {
+    constructor(isHeader: Boolean, header: String, isMroe: Boolean,childrens: List<SecondMenuRsp>) : super(isHeader, header) {
         this.isMore = isMroe
+        this.childrens = childrens
     }
 
-    constructor(t: SecondMenuRsp) : super(t) {}
+    constructor(t: SecondMenuRsp) : super(t)
 
 }

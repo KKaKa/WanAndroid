@@ -77,6 +77,5 @@ class LoginActivity : LifecycleActivity<AccountViewModel>() {
         })
     }
 
-    override fun onBackPressed() = finish()
 
 }

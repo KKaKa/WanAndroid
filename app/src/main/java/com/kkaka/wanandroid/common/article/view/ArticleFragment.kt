@@ -1,5 +1,6 @@
 package com.kkaka.wanandroid.common.article.view
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -31,7 +32,7 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
 
     private var current = 0
     private var collectState = false
-    private lateinit var mActivity : MainActivity
+    private lateinit var mActivity : Activity
 
     public lateinit var mArticleAdapter :ArticleAdapter
 
@@ -39,7 +40,7 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        mActivity = activity as MainActivity
+        mActivity = activity as Activity
     }
 
     override fun initView() {
@@ -75,11 +76,15 @@ abstract class ArticleFragment<T : ArticleViewModel<*>> : LifecycleFragment<T>()
 
         mRvArticle.addOnScrollListener(object : HideScrollListener(){
             override fun onHide() {
-                mActivity.onHide()
+                if(activity is MainActivity){
+                    (mActivity as MainActivity).onHide()
+                }
             }
 
             override fun onShow() {
-                mActivity.onShow()
+                if(activity is MainActivity){
+                    (mActivity as MainActivity).onShow()
+                }
             }
 
         })

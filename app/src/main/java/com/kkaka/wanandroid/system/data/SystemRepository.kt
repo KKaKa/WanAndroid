@@ -17,4 +17,8 @@ class SystemRepository(loadState : MutableLiveData<State>) : ArticleRepository(l
         apiService.getTopMenu().execute(BaseObserver(liveData,loadState,this))
     }
 
+    fun getSystemArticles(page: Int, id: Int, liveData: MutableLiveData<BaseResponse<SystemAtricleRsp>>) {
+        apiService.getSystemArticles(page,id).execute(BaseObserver(liveData,loadState,this))
+    }
+
 }

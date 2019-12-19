@@ -10,6 +10,7 @@ import com.kkaka.wanandroid.system.data.TopMenu
 import com.kkaka.wanandroid.system.data.TopMenuRsp
 import com.kkaka.wanandroid.system.viewmodel.SystemViewModel
 import kotlinx.android.synthetic.main.fragment_article.*
+import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
@@ -37,8 +38,15 @@ class SystemFragment : ArticleFragment<SystemViewModel>(){
         mRvArticle.adapter = systemAdapter
 
         systemAdapter.setOnItemChildClickListener { adapter, view, position ->
-            val data = adapter.data[position]
-            //TODO 跳转到详情 SystemArticleActivity
+            val data = (adapter.data[position] as TopMenu).childrens
+            val topTitle = (adapter.data[position] as TopMenu).header
+            val ids = arrayListOf<Int>()
+            val titls = arrayListOf<String>()
+            data.forEach {
+                ids.add(it.id)
+                titls.add(it.name)
+            }
+            startActivity<SystemArticleActivity>("ids" to ids,"titls" to titls,"topTitle" to topTitle)
         }
         //无加载更多
         systemAdapter.setEnableLoadMore(false)
@@ -54,7 +62,7 @@ class SystemFragment : ArticleFragment<SystemViewModel>(){
     private fun buildTopMenu(data: List<TopMenuRsp>?) {
         val list = arrayListOf<TopMenu>()
         data?.forEach {
-            list.add(TopMenu(true,it.name,!it.children.isEmpty()))
+            list.add(TopMenu(true,it.name,!it.children.isEmpty(),it.children))
             it.children.forEach {
                 list.add(TopMenu(SecondMenuRsp(it.name,it.id)))
             }
