@@ -22,6 +22,7 @@ import com.kkaka.wanandroid.account.data.UserContext
 import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
 import com.kkaka.wanandroid.nagivation.view.NagivationFragment
+import com.kkaka.wanandroid.project.view.ProjectFragment
 import com.kkaka.wanandroid.search.view.SearchActivity
 import com.kkaka.wanandroid.system.view.SystemFragment
 import com.kkaka.wanandroid.wechat.view.WeChatFragment
@@ -39,6 +40,7 @@ class MainActivity : BaseActivity() ,LoginSucListener{
     private val weChatFragment :WeChatFragment by lazy { WeChatFragment() }
     private val systemFragment :SystemFragment by lazy { SystemFragment() }
     private val nagivationFragment :NagivationFragment by lazy { NagivationFragment() }
+    private val projectFragment :ProjectFragment by lazy { ProjectFragment() }
     private lateinit var headerView : View
     private var mUsername : String by Preference(Constant.USERNAME_KEY,"未登录")
     private var pressTime: Long = 0
@@ -145,6 +147,11 @@ class MainActivity : BaseActivity() ,LoginSucListener{
             Constant.SYSTEM ->{
                 setToolBar(toolbar,getString(R.string.navigation_system))
                 changeFragment(systemFragment)
+            }
+
+            Constant.PROJECT ->{
+                setToolBar(toolbar,getString(R.string.navigation_project))
+                changeFragment(projectFragment)
             }
 
             else -> {
