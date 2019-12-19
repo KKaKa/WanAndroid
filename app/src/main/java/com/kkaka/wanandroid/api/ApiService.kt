@@ -7,6 +7,7 @@ import com.kkaka.wanandroid.collect.data.CollectRsp
 import com.kkaka.wanandroid.home.data.BannerRsp
 import com.kkaka.wanandroid.home.data.HomeArticleRsp
 import com.kkaka.wanandroid.nagivation.data.NagivationCategoryRsp
+import com.kkaka.wanandroid.project.data.ProjectTabRsp
 import com.kkaka.wanandroid.search.data.HotSearchRsp
 import com.kkaka.wanandroid.search.data.SearchResultRsp
 import com.kkaka.wanandroid.system.data.SystemAtricleRsp
@@ -112,6 +113,12 @@ interface ApiService {
     @GET("/tree/json")
     fun getTopMenu(): Observable<BaseResponse<List<TopMenuRsp>>>
 
+    /**
+     * 获取体系文章列表
+     */
     @GET("/article/list/{page}/json")
     fun getSystemArticles(@Path("page") page: Int, @Query("cid") id: Int): Observable<BaseResponse<SystemAtricleRsp>>
+
+    @GET("/project/tree/json")
+    fun getProjectTab(): Observable<BaseResponse<List<ProjectTabRsp>>>
 }
