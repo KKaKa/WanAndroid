@@ -30,13 +30,19 @@ fun TextView.str(): String {
     return this.text.toString().trim()
 }
 
-fun ImageView.loadImage(context: Context, path: String, placeholder: Int = R.drawable.ic_placeholder, error: Int = R.drawable.ic_error,Cache: Boolean =false) {
+fun ImageView.loadImage(context: Context,
+                        path: String,
+                        placeholder: Int = R.drawable.ic_placeholder,
+                        error: Int = R.drawable.ic_error,
+                        width: Int = 150,
+                        height : Int = 200) {
 
     val options = RequestOptions()
         .placeholder(placeholder)
         .error(error)
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-        .override(150, 200)
+
+    if(width != 0 && height != 0) options.override(width,height)
 
     Glide.with(context).load(path).apply(options).into(this)
 }

@@ -13,7 +13,7 @@ import com.kkaka.wanandroid.common.article.data.ArticleRepository
  */
 class CollectRepository(loadState: MutableLiveData<State>) : ArticleRepository(loadState) {
 
-    fun getCollectArtrcles(page : Int,liveData: MutableLiveData<BaseResponse<CollectRsp>>){
+    fun getCollectArticles(page : Int, liveData: MutableLiveData<BaseResponse<CollectRsp>>){
         apiService.getCollectArticle(page).execute(BaseObserver(liveData,loadState,this))
     }
 

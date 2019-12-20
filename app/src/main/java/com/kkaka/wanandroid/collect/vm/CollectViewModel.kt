@@ -16,8 +16,8 @@ class CollectViewModel(application: Application) : ArticleViewModel<CollectRepos
     val mConnectArticleData :MutableLiveData<BaseResponse<CollectRsp>> = MutableLiveData()
     val mUnConnectArticleData :MutableLiveData<BaseResponse<Any>> = MutableLiveData()
 
-    fun getCollectArtrcles(page :Int){
-        mRespository.getCollectArtrcles(page,mConnectArticleData)
+    fun getCollectArticles(page :Int){
+        mRespository.getCollectArticles(page,mConnectArticleData)
     }
 
     fun unCollect(id : Int,originId : Int){

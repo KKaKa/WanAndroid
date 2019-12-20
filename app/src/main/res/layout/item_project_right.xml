@@ -1,29 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="160dp"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="3dp"
+        android:layout_margin="10dp">
 
     <LinearLayout
-            android:id="@+id/mProject"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-        <TextView
-                android:id="@+id/mTvDesc"
+        <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:padding="16dp">
+
+            <TextView
+                    android:id="@+id/mTvAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/author"
+                    android:textSize="@dimen/sp_10"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toTopOf="@+id/mTvTime"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mTvTime"/>
+
+            <TextView
+                    android:id="@+id/mTvDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxEms="25"
+                    android:maxLines="4"
+                    tools:text="标题标题标题标题标题标题标题标题标题"
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/mTvAuthor"
+                    app:layout_constraintStart_toStartOf="@+id/mTvAuthor"/>
+
+            <TextView
+                    android:id="@+id/mTvZan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="赞"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="@dimen/sp_10"
+                    app:layout_constraintTop_toBottomOf="@+id/mTvDesc"
+                    app:layout_constraintStart_toStartOf="@+id/mTvDesc"/>
+
+            <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_zan"
+                    app:layout_constraintStart_toEndOf="@+id/mTvZan"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/mTvZan"
+                    app:layout_constraintTop_toTopOf="@+id/mTvZan"/>
+
+        </android.support.constraint.ConstraintLayout>
 
         <ImageView
                 android:id="@+id/mIvPic"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"/>
-
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                />
 
     </LinearLayout>
-
 
 </android.support.v7.widget.CardView>

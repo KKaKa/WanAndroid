@@ -11,7 +11,7 @@ open class BaseRepository {
 
     private val mCompositeSubscription by lazy { CompositeDisposable() }
 
-    fun Subscribe(disposable: Disposable) = mCompositeSubscription.add(disposable)
+    fun subscribe(disposable: Disposable) = mCompositeSubscription.add(disposable)
 
     fun unSubscribe() = mCompositeSubscription.dispose()
 

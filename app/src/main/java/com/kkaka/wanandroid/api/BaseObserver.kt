@@ -8,7 +8,6 @@ import com.kkaka.common.constant.Constant
 import com.kkaka.common.https.BaseResponse
 import com.kkaka.wanandroid.BuildConfig
 import com.kkaka.wanandroid.account.data.UserContext
-import com.kkaka.wanandroid.search.data.SearchResultRsp
 import com.orhanobut.logger.Logger
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -27,7 +26,7 @@ class BaseObserver<T : BaseResponse<*>>(
     }
 
     override fun onSubscribe(d: Disposable) {
-        repository.Subscribe(d)
+        repository.subscribe(d)
     }
 
     override fun onNext(response: T) {

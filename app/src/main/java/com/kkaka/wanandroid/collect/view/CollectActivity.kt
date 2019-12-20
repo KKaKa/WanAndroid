@@ -23,16 +23,16 @@ class CollectActivity : ArticleActivity<CollectViewModel>() {
     override fun initData() {
         super.initData()
         page = 0
-        mViewModel.getCollectArtrcles(page)
+        mViewModel.getCollectArticles(page)
     }
 
     override fun onRefreshData() {
         page = 0
-        mViewModel.getCollectArtrcles(page)
+        mViewModel.getCollectArticles(page)
     }
 
     override fun onLoadMore() {
-        mViewModel.getCollectArtrcles(++page)
+        mViewModel.getCollectArticles(++page)
     }
 
     override fun dataObserver() {

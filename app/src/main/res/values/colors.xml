@@ -11,6 +11,7 @@
 
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#CECECE</color>
+    <color name="gray_trans">#77000000</color>
     <color name="lightGray">#EEEEEE</color>
     <color name="black">#000000</color>
 
