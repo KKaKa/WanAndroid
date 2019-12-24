@@ -4,7 +4,7 @@
 好段时间没写APP了，一直在忙于工作上的事，距离上一次用Kotlin写项目也有段时间了。偶然之间发现了宝藏API  —— 玩Android，借此机会复习一下。
 
 ## 下载
-
+[下载链接](https://github.com/KKaKa/WanAndroid/releases)
 
 ## API
 [玩Android](https://www.wanandroid.com/blog/show/2)
