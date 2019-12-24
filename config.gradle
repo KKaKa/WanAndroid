@@ -26,6 +26,7 @@ ext {
     room_version        = '2.2.2'
     circleimageview_version = '2.2.0'
     baseaadapter_version    = '2.9.47'
+    about_fragment_version = '6.1.0'
 
 
     appId = [
@@ -62,6 +63,7 @@ ext {
             "agentweb"                        : "com.just.agentweb:agentweb:$agentweb_version",
             "flexboxLayout"                   : "com.google.android:flexbox:$flexbox_version",
             "room"                            : "androidx.room:room-runtime:$room_version",
+            "license-fragment"                : "com.mikepenz:aboutlibraries:$about_fragment_version"
     ]
 
     processor = [

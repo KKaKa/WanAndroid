@@ -1,5 +1,6 @@
 package com.kkaka.wanandroid
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
@@ -13,13 +14,11 @@ import com.kkaka.common.base.BaseActivity
 import com.kkaka.common.common.AppManager
 import com.kkaka.common.constant.Constant
 import com.kkaka.common.constant.Constant.HOME
-import com.kkaka.common.state.UserState
-import com.kkaka.common.state.collect.CollectState
 import com.kkaka.common.state.login.LoginSucListener
 import com.kkaka.common.state.login.LoginSucState
 import com.kkaka.common.utils.Preference
+import com.kkaka.wanandroid.about.view.AboutActivity
 import com.kkaka.wanandroid.account.data.UserContext
-import com.kkaka.wanandroid.account.view.LoginActivity
 import com.kkaka.wanandroid.home.view.HomeFragment
 import com.kkaka.wanandroid.nagivation.view.NagivationFragment
 import com.kkaka.wanandroid.project.view.ProjectFragment
@@ -27,7 +26,6 @@ import com.kkaka.wanandroid.search.view.SearchActivity
 import com.kkaka.wanandroid.system.view.SystemFragment
 import com.kkaka.wanandroid.wechat.view.WeChatFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_drawer_header.*
 import kotlinx.android.synthetic.main.layout_drawer_header.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.startActivity
@@ -57,6 +55,9 @@ class MainActivity : BaseActivity() ,LoginSucListener{
         initBottomNavigationBar()
         defauleFragment()
         LoginSucState.addListener(this)
+        mTvStar.setOnClickListener {
+            startActivity<WebActivity>("url" to getString(R.string.github_url),"title" to "KKaKa")
+        }
     }
 
     private fun defauleFragment() {
@@ -88,6 +89,9 @@ class MainActivity : BaseActivity() ,LoginSucListener{
                 }
                 R.id.nav_menu_logout -> {
                     logout()
+                }
+                R.id.nav_about -> {
+                    goAbout()
                 }
             }
             drawerMain.closeDrawers()
@@ -191,6 +195,10 @@ class MainActivity : BaseActivity() ,LoginSucListener{
         UserContext.instance.goCollectActivity(this)
     }
 
+    private fun goAbout(){
+        startActivity<AboutActivity>()
+    }
+
     override fun loginSuccess(username: String, collectIds: List<Int>?) {
         mUsername = username
         headerView.tv_name.text = username
@@ -210,6 +218,10 @@ class MainActivity : BaseActivity() ,LoginSucListener{
     }
 
     override fun onBackPressed() {
+        if(drawerMain.isDrawerOpen(navigation)){
+            drawerMain.closeDrawers()
+            return
+        }
         val time = System.currentTimeMillis()
         if (time - pressTime > 2000) {
             toast(getString(R.string.exit_app))

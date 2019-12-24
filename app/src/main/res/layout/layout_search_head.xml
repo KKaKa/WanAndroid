@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<TextView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/mTvHeadView"
-        tools:text="@string/app_name"
-        android:gravity="left"
-        android:paddingTop="16dp"
-        android:paddingStart="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        />
+        android:orientation="horizontal"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+            android:id="@+id/mTvHeadView"
+            tools:text="@string/app_name"
+            android:gravity="left"
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            />
+
+    <ImageView
+            android:id="@+id/mIvDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_gravity="bottom"
+            android:paddingEnd="16dp"
+            />
+
+
+</LinearLayout>

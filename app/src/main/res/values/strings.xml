@@ -3,6 +3,7 @@
 
     <string name="menu_collect">我的收藏</string>
     <string name="menu_logout">退出登录</string>
+    <string name="menu_about">关于</string>
     <string name="exit_app">再次点击退出程序</string>
 
     <string name="navigation_home">首页</string>
@@ -27,6 +28,15 @@
     <string name="search_history">搜索历史</string>
 
     <string name="system_top_menu_in">点击进入 ></string>
+
+    <string name="license">开源许可</string>
+    <string name="github">Github</string>
+    <string name="star">go Star</string>
+    <string name="jianshu">简书</string>
+    <string name="version">版本</string>
+    <string name="github_url">https://github.com/KKaKa/WanAndroid</string>
+    <string name="jianshu_url">https://www.jianshu.com/u/8f6f557a4814</string>
+
 
 
 </resources>

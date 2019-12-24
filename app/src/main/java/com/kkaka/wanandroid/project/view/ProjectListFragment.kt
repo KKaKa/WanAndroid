@@ -7,12 +7,14 @@ import android.support.v7.widget.LinearLayoutManager
 import com.kkaka.common.base.LifecycleFragment
 import com.kkaka.wanandroid.MainActivity
 import com.kkaka.wanandroid.R
+import com.kkaka.wanandroid.WebActivity
 import com.kkaka.wanandroid.common.adapter.ProjectListAdapter
 import com.kkaka.wanandroid.common.behavior.HideScrollListener
 import com.kkaka.wanandroid.project.data.Project
 import com.kkaka.wanandroid.project.data.ProjectEntity
 import com.kkaka.wanandroid.project.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.fragment_project_list.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * @author Laizexin on 2019/12/9
@@ -59,7 +61,12 @@ class ProjectListFragment : LifecycleFragment<ProjectViewModel>() {
                     (activity as MainActivity).onShow()
                 }
             }
+        })
 
+        adapter.setOnClickListener(object : ProjectListAdapter.OnClickListener{
+            override fun onClick(title: String, link: String) {
+                startActivity<WebActivity>("url" to link,"title" to title)
+            }
         })
     }
 

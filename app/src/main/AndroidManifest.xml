@@ -14,22 +14,40 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
-            android:usesCleartextTraffic="true">
-        <activity android:name=".system.view.SystemArticleActivity">
+            android:usesCleartextTraffic="true"
+            >
+        <activity android:name=".about.view.LicenseActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".search.view.SearchActivity">
+        <activity android:name=".AboutMeActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".WebActivity">
+        <activity android:name=".about.view.AboutActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".collect.view.CollectActivity">
+        <activity android:name=".system.view.SystemArticleActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".account.view.RegisterActivity">
+        <activity android:name=".search.view.SearchActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".account.view.LoginActivity">
+        <activity android:name=".WebActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".collect.view.CollectActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".account.view.RegisterActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".account.view.LoginActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".SplashActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -13,6 +13,10 @@ class SplashActivity : BaseActivity() {
 
     override fun initView() {
         super.initView()
+        if(BuildConfig.DEBUG){
+            startActivity<MainActivity>()
+            return
+        }
         disposable = Observable.timer(3,TimeUnit.SECONDS).subscribe{
             startActivity<MainActivity>()
         }

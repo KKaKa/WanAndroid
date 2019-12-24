@@ -55,6 +55,7 @@
             app:menu="@menu/drawer_menu">
 
         <TextView
+                android:id="@+id/mTvStar"
                 android:textStyle="italic"
                 android:layout_marginBottom="8dp"
                 android:text="感谢star https://github.com/KKaKa/WanAndroid"

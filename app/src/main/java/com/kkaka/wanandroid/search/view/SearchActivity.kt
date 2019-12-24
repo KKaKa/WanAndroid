@@ -48,10 +48,12 @@ class SearchActivity : ArticleActivity<SearchViewModel>() {
         mHotSearchAdapter.setOnItemChildClickListener { adapter, _, position ->
             val str = (adapter.data[position] as HotSearchRsp).name
             tv.setText(str)
+            showLoading()
             mViewModel.search(page,str)
         }
         val headView = View.inflate(this,R.layout.layout_search_head,null)
         headView.mTvHeadView.text = getString(R.string.hot_search)
+        headView.mIvDelete.visibility = View.GONE
         mHotSearchAdapter.addHeaderView(headView)
     }
 
@@ -59,14 +61,21 @@ class SearchActivity : ArticleActivity<SearchViewModel>() {
         mRvHistory.layoutManager = MyFlexboxLayoutManager(this)
         mRvHistory.adapter = mHistorySearchAdapter
 
+        mHistorySearchAdapter.openLoadAnimation()
+
         mHistorySearchAdapter.setOnItemChildClickListener { adapter, _, position ->
             val str = (adapter.data[position] as Record).name
             tv.setText(str)
             tv.setSelection(str.length)
+            showLoading()
             mViewModel.search(page,str)
         }
         val headView = View.inflate(this,R.layout.layout_search_head,null)
         headView.mTvHeadView.text = getString(R.string.search_history)
+        headView.mIvDelete.setOnClickListener {
+            mHistorySearchAdapter.replaceData(arrayListOf())
+            mViewModel.clearHistorySearch()
+        }
         mHistorySearchAdapter.addHeaderView(headView)
     }
 

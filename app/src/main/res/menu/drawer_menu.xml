@@ -9,6 +9,11 @@
                 android:title="@string/menu_collect"/>
 
             <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/menu_about"
+                    android:title="@string/menu_about"/>
+
+            <item
                     android:id="@+id/nav_menu_logout"
                     android:icon="@drawable/menu_logout"
                     android:title="@string/menu_logout"/>

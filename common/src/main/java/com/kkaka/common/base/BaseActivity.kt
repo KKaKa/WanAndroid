@@ -30,6 +30,11 @@ abstract class BaseActivity : AppCompatActivity(){
         initData()
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable("android:support:fragments", null)
+    }
+
     open fun initData() {
     }
 

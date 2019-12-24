@@ -56,4 +56,12 @@ class SearchViewModel(application: Application) : ArticleViewModel<SearchReposit
         mSearchHistory.postValue(database.recordDao().getAll())
     }
 
+    fun clearHistorySearch(){
+        val datas = database.recordDao().getAll()
+        datas.forEach {
+            database.recordDao().delete(it)
+        }
+        mSearchHistory.postValue(database.recordDao().getAll())
+    }
+
 }

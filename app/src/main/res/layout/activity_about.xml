@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <com.kkaka.wanandroid.common.ui.ExtendView
+            android:id="@+id/mLicense"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:iconImage="@drawable/ic_license"
+            app:title="@string/license">
+    </com.kkaka.wanandroid.common.ui.ExtendView>
+
+    <com.kkaka.wanandroid.common.ui.ExtendView
+            android:id="@+id/mGithub"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            app:iconImage="@drawable/ic_github"
+            app:title="@string/github"
+            app:value="@string/star"
+            >
+    </com.kkaka.wanandroid.common.ui.ExtendView>
+
+    <com.kkaka.wanandroid.common.ui.ExtendView
+            android:id="@+id/mJianshu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            app:iconImage="@drawable/ic_jianshu"
+            app:title="@string/jianshu"
+            >
+    </com.kkaka.wanandroid.common.ui.ExtendView>
+
+    <com.kkaka.wanandroid.common.ui.ExtendView
+            android:id="@+id/mVersion"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            app:iconImage="@drawable/ic_version"
+            app:extendAble="false"
+            app:title="@string/version"
+            >
+    </com.kkaka.wanandroid.common.ui.ExtendView>
+
+</LinearLayout>
