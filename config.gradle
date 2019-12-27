@@ -26,8 +26,7 @@ ext {
     room_version        = '2.2.2'
     circleimageview_version = '2.2.0'
     baseaadapter_version    = '2.9.47'
-    about_fragment_version = '6.1.0'
-
+    about_fragment_version  = '6.1.0'
 
     appId = [
             "app"     : "com.kkaka.wanandroid",

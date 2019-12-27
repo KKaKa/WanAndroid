@@ -32,7 +32,6 @@ open class BaseApplication : Application(){
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
 
         Preference.setContext(applicationContext)
-
     }
 
 }

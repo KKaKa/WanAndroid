@@ -37,6 +37,11 @@
     <string name="github_url">https://github.com/KKaKa/WanAndroid</string>
     <string name="jianshu_url">https://www.jianshu.com/u/8f6f557a4814</string>
 
+    <string name="share">分享</string>
+    <string name="share_type_title">分享专题</string>
+    <string name="share_type_url">%1$s 分享【%2$s】：%3$s</string>
+
+
 
 
 </resources>
