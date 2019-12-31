@@ -34,6 +34,7 @@
     <string name="star">go Star</string>
     <string name="jianshu">简书</string>
     <string name="version">版本</string>
+    <string name="cache">缓存</string>
     <string name="github_url">https://github.com/KKaKa/WanAndroid</string>
     <string name="jianshu_url">https://www.jianshu.com/u/8f6f557a4814</string>
 
@@ -41,6 +42,10 @@
     <string name="share_type_title">分享专题</string>
     <string name="share_type_url">%1$s 分享【%2$s】：%3$s</string>
 
+    <string name="tips">温馨提示</string>
+    <string name="ensure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="ensure_clear_cache">确定清除缓存吗?</string>
 
 
 

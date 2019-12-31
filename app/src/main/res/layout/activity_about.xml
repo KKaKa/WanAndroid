@@ -47,4 +47,15 @@
             >
     </com.kkaka.wanandroid.common.ui.ExtendView>
 
+    <com.kkaka.wanandroid.common.ui.ExtendView
+            android:id="@+id/mCache"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            app:iconImage="@drawable/ic_cache"
+            app:extendAble="false"
+            app:title="@string/cache"
+            >
+    </com.kkaka.wanandroid.common.ui.ExtendView>
+
 </LinearLayout>

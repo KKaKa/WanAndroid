@@ -27,6 +27,7 @@ ext {
     circleimageview_version = '2.2.0'
     baseaadapter_version    = '2.9.47'
     about_fragment_version  = '6.1.0'
+    material_dialog_version = '0.9.6.0'
 
     appId = [
             "app"     : "com.kkaka.wanandroid",
@@ -62,7 +63,8 @@ ext {
             "agentweb"                        : "com.just.agentweb:agentweb:$agentweb_version",
             "flexboxLayout"                   : "com.google.android:flexbox:$flexbox_version",
             "room"                            : "androidx.room:room-runtime:$room_version",
-            "license-fragment"                : "com.mikepenz:aboutlibraries:$about_fragment_version"
+            "license-fragment"                : "com.mikepenz:aboutlibraries:$about_fragment_version",
+            "material_dialog"                 : "com.afollestad.material-dialogs:core:$material_dialog_version"
     ]
 
     processor = [

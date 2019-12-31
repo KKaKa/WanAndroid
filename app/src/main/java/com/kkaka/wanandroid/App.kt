@@ -7,4 +7,5 @@ import com.kkaka.common.base.BaseApplication
  * @description
  */
 class App : BaseApplication() {
+
 }
