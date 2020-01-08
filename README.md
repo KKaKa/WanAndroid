@@ -21,6 +21,11 @@ MVVM + LiveData + RxJava + okHttp + Retrofit + Room +Glide ，至于DataBinding�
 ![项目](https://github.com/KKaKa/WanAndroid/blob/master/img/GIF_5.gif)
 
 ## 版本
+#### v 1.1.0
+- [x] 文章分享
+- [x] 清除缓存 
+- [x] 关于页面UI优化 
+
 #### v 1.0.0
 - [x] 登录
 - [x] 首页
